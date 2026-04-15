@@ -209,7 +209,14 @@
       overflow: hidden;
       transition: border-color 0.3s, transform 0.2s;
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
+
+    .project-card a {
+  text-decoration: none;
+  color: inherit;
+}
 
     .project-card:hover {
       border-color: #c9a84c88;
@@ -235,12 +242,17 @@
     .project-info { padding: 1.2rem 1.4rem 1.4rem; }
 
     .project-tag {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: #c9a84c;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 600;
+  background: #c9a84c15;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
 
     .project-info h3 {
       font-size: 15px;
