@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Bonne Viande — Restaurant à Paris</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --rouge: #8b1a1a;
+      --rouge-vif: #b22222;
+      --rouge-clair: #c0392b;
+      --or: #c9a84c;
+      --creme: #f5f0e8;
+      --brun: #2c1810;
+      --brun-mid: #4a2c1a;
+      --nav-height: 92px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: var(--creme);
+      color: var(--brun);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    /* TEXTURE OVERLAY */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f5f0e8'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23e8e0d0' opacity='0.5'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      min-height: var(--nav-height);
+      background: rgba(44, 24, 16, 0.92);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--creme);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      color: var(--or);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--or);
+    }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brun);
+      background: var(--or);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(201, 168, 76, 0.22);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-cta:hover {
+      background: #e0bf6a;
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-height) + 2.5rem);
+      background: var(--brun);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(139, 26, 26, 0.55) 0%, transparent 60%),
+        linear-gradient(to right, rgba(44, 24, 16, 0.96) 35%, rgba(44, 24, 16, 0.45) 100%);
+      z-index: 1;
+    }
+
+    .hero-img-placeholder {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 58%;
+      background-image: url("https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+      filter: brightness(0.75) contrast(1.05);
+    }
+
+    .hero-img-placeholder::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to left, rgba(44,24,16,0.05), rgba(44,24,16,0.35));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 4rem 7rem;
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--or);
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      color: var(--creme);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rouge-vif);
+    }
+
+    .hero-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(245, 240, 232, 0.68);
+      line-height: 1.9;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brun);
+      background: var(--or);
+      padding: 0.95rem 2rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid var(--or);
+      border-radius: 999px;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--or);
+    }
+
+    .btn-secondary {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.3);
+      padding-bottom: 2px;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--creme);
+      border-color: var(--creme);
+    }
+
+    /* SOCIAL PROOF STRIP */
+    .social-proof {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: rgba(201, 168, 76, 0.12);
+      border-top: 1px solid rgba(201, 168, 76, 0.25);
+      backdrop-filter: blur(8px);
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .proof-stars {
+      color: var(--or);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+    }
+
+    .proof-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(245, 240, 232, 0.7);
+      text-transform: uppercase;
+    }
+
+    .proof-text strong {
+      color: var(--creme);
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 30px;
+      background: rgba(201, 168, 76, 0.3);
+    }
+
+    /* SECTION STYLES */
+    .section-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rouge-vif);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: var(--rouge-vif);
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--brun);
+      line-height: 1.1;
+    }
+
+    /* QUI SOMMES NOUS */
+    .about {
+      padding: 8rem 4rem;
+      background: var(--creme);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-img {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background-image: url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    }
+
+    .about-img-main::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,24,16,0.28), transparent);
+    }
+
+    .about-img-badge {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 120px;
+      height: 120px;
+      background: var(--or);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .about-img-badge span:first-child {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--brun);
+      line-height: 1;
+    }
+
+    .about-img-badge span:last-child {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brun);
+      opacity: 0.7;
+    }
+
+    .about-text {
+      padding-left: 1rem;
+    }
+
+    .about-body {
+      font-size: 0.85rem;
+      line-height: 2;
+      color: rgba(44, 24, 16, 0.7);
+      margin: 1.5rem 0 2rem;
+    }
+
+    .about-quote {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--rouge-vif);
+      border-left: 2px solid var(--rouge-vif);
+      padding-left: 1.5rem;
+      line-height: 1.5;
+      margin: 2rem 0;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      padding: 1.2rem;
+      border: 1px solid rgba(139, 26, 26, 0.15);
+      background: rgba(139, 26, 26, 0.03);
+    }
+
+    .value-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rouge-vif);
+      margin-bottom: 0.4rem;
+    }
+
+    .value-body {
+      font-size: 0.78rem;
+      color: rgba(44, 24, 16, 0.6);
+      line-height: 1.6;
+    }
+
+    /* LE LIEU */
+    .lieu {
+      background: var(--brun);
+      padding: 8rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lieu::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--or), transparent);
+    }
+
+    .lieu-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .lieu-header {
+      margin-bottom: 4rem;
+    }
+
+    .lieu-header .section-eyebrow {
+      color: var(--or);
+    }
+
+    .lieu-header .section-eyebrow::before {
+      background: var(--or);
+    }
+
+    .lieu-header .section-title {
+      color: var(--creme);
+    }
+
+    .lieu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: rgba(201, 168, 76, 0.15);
+    }
+
+    .lieu-card {
+      background: rgba(44, 24, 16, 0.95);
+      padding: 2.5rem;
+      border: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .lieu-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--or);
+    }
+
+    .lieu-card-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 1.2rem;
+    }
+
+    .lieu-card-body {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.05rem;
+      color: rgba(245, 240, 232, 0.75);
+      line-height: 1.9;
+    }
+
+    .lieu-card-body strong {
+      color: var(--creme);
+      font-weight: 400;
+    }
+
+    .lieu-card-body a {
+      color: var(--or);
+      text-decoration: none;
+      font-size: 1.3rem;
+      display: block;
+      margin-top: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .lieu-card-body a:hover {
+      color: #e0bf6a;
+    }
+
+    /* PHOTOS */
+    .photos {
+      padding: 8rem 4rem;
+      background: var(--creme);
+      position: relative;
+      z-index: 1;
+    }
+
+    .photos-header {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .photos-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 8px;
+    }
+
+    .photo-item {
+      overflow: hidden;
+      position: relative;
+      border-radius: 4px;
+    }
+
+    .photo-item:first-child {
+      grid-row: span 2;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .photo-placeholder::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.08));
+    }
+
+    .photo-item:hover .photo-placeholder {
+      transform: scale(1.04);
+    }
+
+    .photo-1 {
+      background-image: url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80");
+    }
+
+    .photo-2 {
+      background-image: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .photo-3 {
+      background-image: url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .photo-4 {
+      background-image: url("https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .photo-5 {
+  background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80");
+}
+
+    .photo-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.9);
+      background: rgba(0, 0, 0, 0.28);
+      padding: 0.4rem 0.8rem;
+      backdrop-filter: blur(4px);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* AVIS */
+    .avis-strip {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .avis-card {
+      padding: 1.8rem;
+      border: 1px solid rgba(139, 26, 26, 0.15);
+      background: white;
+      position: relative;
+    }
+
+    .avis-card::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 4rem;
+      color: var(--rouge-vif);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .avis-stars {
+      color: var(--or);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      margin-bottom: 0.8rem;
+    }
+
+    .avis-text {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--brun-mid);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .avis-author {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(44, 24, 16, 0.4);
+    }
+
+    .avis-author strong {
+      color: var(--rouge-vif);
+      display: block;
+      font-size: 0.72rem;
+      margin-bottom: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a0a06;
+      padding: 4rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--creme);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo span {
+      color: var(--or);
+    }
+
+    .footer-desc {
+      font-size: 0.78rem;
+      color: rgba(245, 240, 232, 0.4);
+      line-height: 1.9;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(245, 240, 232, 0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--or);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      color: rgba(245, 240, 232, 0.25);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-copy span {
+      color: var(--or);
+      opacity: 0.6;
+    }
+
+    .footer-mention {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(245, 240, 232, 0.2);
+    }
+
+    @media (max-width: 992px) {
+      .hero-img-placeholder {
+        width: 100%;
+        clip-path: none;
+        opacity: 0.25;
+      }
+
+      .hero-bg {
+        background:
+          linear-gradient(135deg, rgba(139, 26, 26, 0.45) 0%, transparent 60%),
+          linear-gradient(to right, rgba(44, 24, 16, 0.95) 20%, rgba(44, 24, 16, 0.82) 100%);
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: 78px;
+      }
+
+      nav {
+        padding: 1rem 1.2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.62rem;
+      }
+
+      .hero {
+        padding-top: calc(var(--nav-height) + 2rem);
+      }
+
+      .hero-content {
+        padding: 0 1.5rem 8rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.7rem, 10vw, 4rem);
+      }
+
+      .social-proof {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .proof-divider {
+        display: none;
+      }
+
+      .about {
+        padding: 4rem 1.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-img-badge {
+        bottom: -1rem;
+        right: -0.5rem;
+      }
+
+      .about-values {
+        grid-template-columns: 1fr;
+      }
+
+      .lieu {
+        padding: 4rem 1.5rem;
+      }
+
+      .lieu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photos {
+        padding: 4rem 1.5rem;
+      }
+
+      .photos-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      .photo-item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .avis-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      footer {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">La <span>Bonne</span> Viande</div>
+    <ul class="nav-links">
+      <li><a href="#about">Notre Histoire</a></li>
+      <li><a href="#lieu">Le Lieu</a></li>
+      <li><a href="#photos">Galerie</a></li>
+    </ul>
+    <a href="tel:+33142361890" class="nav-cta">Réserver</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-img-placeholder"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Paris · Depuis 2008</p>
+      <h1>
+        L'art de la<br />
+        <em>viande</em><br />
+        à la française
+      </h1>
+      <p class="hero-sub">
+        Dans le cœur du 8e arrondissement, nous sélectionnons les meilleures pièces de bœuf français et étranger pour une expérience charnelle et raffinée.
+      </p>
+      <div class="hero-btns">
+        <a href="tel:+33142361890" class="btn-primary">Réserver une table</a>
+        <a href="#about" class="btn-secondary">Découvrir</a>
+      </div>
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <div class="social-proof">
+      <div class="proof-item">
+        <div>
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-text">
+            <strong>« Une expérience inoubliable »</strong>
+            — Marie L., Google
+          </div>
+        </div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <div>
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-text">
+            <strong>« La meilleure côte de bœuf de Paris »</strong>
+            — Thomas R., TripAdvisor
+          </div>
+        </div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <div>
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-text">
+            <strong>4.9/5 · +1 200 avis</strong>
+            Meilleur restaurant de viande Paris 2024
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUI SOMMES NOUS -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-img">
+        <div class="about-img-main"></div>
+        <div class="about-img-badge">
+          <span>16</span>
+          <span>ans d'excellence</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow">Notre Histoire</p>
+        <h2 class="section-title">
+          Une passion<br />pour la viande<br />
+          <em style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--rouge-vif);">d'exception</em>
+        </h2>
+        <p class="about-body">
+          Fondé en 2008 par Jean-Pierre Mercier, boucher de troisième génération, La Bonne Viande est née d'une conviction simple : la viande mérite le même respect qu'un grand vin. Chaque pièce est sélectionnée avec soin auprès de producteurs partenaires en France, en Argentine et au Japon.
+        </p>
+        <blockquote class="about-quote">
+          « La viande saignante, c'est la vie dans toute sa générosité. »
+        </blockquote>
+        <p class="about-body">
+          Notre chef, formé dans les plus grandes maisons parisiennes, maîtrise l'art de la cuisson au feu de bois pour révéler le caractère profond de chaque morceau.
+        </p>
+        <div class="about-values">
+          <div class="value-item">
+            <div class="value-title">Sélection</div>
+            <div class="value-body">Races à viande d'exception : Wagyu, Angus, Simmental</div>
+          </div>
+          <div class="value-item">
+            <div class="value-title">Maturation</div>
+            <div class="value-body">Dry-aged jusqu'à 120 jours dans notre cave dédiée</div>
+          </div>
+          <div class="value-item">
+            <div class="value-title">Cuisson</div>
+            <div class="value-body">Feu de bois de chêne, braise vive, respect de la pièce</div>
+          </div>
+          <div class="value-item">
+            <div class="value-title">Service</div>
+            <div class="value-body">Une brigade passionnée à votre service chaque soir</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LE LIEU -->
+  <section class="lieu" id="lieu">
+    <div class="lieu-inner">
+      <div class="lieu-header">
+        <p class="section-eyebrow">Nous Trouver</p>
+        <h2 class="section-title" style="color: var(--creme)">Le Lieu</h2>
+      </div>
+      <div class="lieu-grid">
+        <div class="lieu-card">
+          <div class="lieu-card-icon">📍</div>
+          <div class="lieu-card-title">Adresse</div>
+          <div class="lieu-card-body">
+            <strong>La Bonne Viande</strong><br />
+            24, Rue du Faubourg Saint-Honoré<br />
+            75008 Paris<br /><br />
+            Métro : Saint-Augustin<br />
+            Ligne 9 — Sortie 2
+          </div>
+        </div>
+        <div class="lieu-card">
+          <div class="lieu-card-icon">🕐</div>
+          <div class="lieu-card-title">Horaires</div>
+          <div class="lieu-card-body">
+            <strong>Déjeuner</strong><br />
+            Mardi – Vendredi<br />
+            12h00 – 14h30<br /><br />
+            <strong>Dîner</strong><br />
+            Mardi – Samedi<br />
+            19h00 – 23h00<br /><br />
+            Fermé Dimanche & Lundi
+          </div>
+        </div>
+        <div class="lieu-card">
+          <div class="lieu-card-icon">📞</div>
+          <div class="lieu-card-title">Réservation</div>
+          <div class="lieu-card-body">
+            Réservation conseillée,<br />
+            surtout le week-end.<br /><br />
+            <strong>Téléphone :</strong>
+            <a href="tel:+33142361890">+33 1 42 36 18 90</a>
+            <br /><br />
+            Du mardi au samedi<br />
+            10h00 – 22h00
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS + AVIS -->
+  <section class="photos" id="photos">
+    <div class="photos-header">
+      <p class="section-eyebrow">Galerie</p>
+      <h2 class="section-title">L'expérience<br />en images</h2>
+    </div>
+
+    <div class="photos-grid">
+      <div class="photo-item">
+        <div class="photo-placeholder photo-1">
+          <span class="photo-label">Côte de bœuf Wagyu</span>
+        </div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-2">
+          <span class="photo-label">Notre salle</span>
+        </div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-3">
+          <span class="photo-label">Cave à maturation</span>
+        </div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-4">
+          <span class="photo-label">Cuisson au feu de bois</span>
+        </div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-5">
+          <span class="photo-label">Dressage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVIS -->
+    <div class="avis-strip">
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">
+          Une côte de bœuf à tomber. La cuisson parfaite, la viande fondait littéralement en bouche. Le service est aux petits soins, une adresse que je recommande sans hésitation.
+        </p>
+        <div class="avis-author">
+          <strong>Sophie M.</strong>
+          Google · Octobre 2024
+        </div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">
+          Le meilleur Wagyu que j'ai eu le plaisir de goûter à Paris. L'ambiance est feutrée, élégante, sans être guindée. Une expérience complète du début à la fin.
+        </p>
+        <div class="avis-author">
+          <strong>Antoine D.</strong>
+          TripAdvisor · Septembre 2024
+        </div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">
+          Nous y sommes allés pour fêter notre anniversaire et nous ne sommes pas déçus. La sélection de vins est remarquable et le personnel connaît son métier sur le bout des doigts.
+        </p>
+        <div class="avis-author">
+          <strong>Claire & Paul R.</strong>
+          Google · Août 2024
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">La <span>Bonne</span> Viande</div>
+        <p class="footer-desc">
+          Un restaurant dédié à l'excellence de la viande française et internationale, au cœur du 8e arrondissement de Paris.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#about">Notre Histoire</a></li>
+          <li><a href="#lieu">Le Lieu</a></li>
+          <li><a href="#photos">Galerie</a></li>
+          <li><a href="tel:+33142361890">Réserver</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+33142361890">+33 1 42 36 18 90</a></li>
+          <li><a href="#">contact@labonneviande.fr</a></li>
+          <li><a href="#">24, Rue du Fbg St-Honoré</a></li>
+          <li><a href="#">75008 Paris</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 <span>La Bonne Viande</span>. Tous droits réservés.</p>
+      <p class="footer-mention">L'abus d'alcool est dangereux pour la santé.</p>
+    </div>
+  </footer>
+</body>
+</html>
