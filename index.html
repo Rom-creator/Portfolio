@@ -357,33 +357,37 @@
     footer span { color: #c9a84c; }
 
     /* RESPONSIVE */
-   @media (max-width: 480px) {
-  .section-title {
-    font-size: 22px;
-  }
-
-  .project-info h3 {
-    font-size: 14px;
-  }
-
-  .project-info p {
-    font-size: 12px;
-  }
+    @media (max-width: 650px) {
+      .hero h1 { font-size: 34px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
 }
 
-
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
 }
 
-
-@media (min-width: 1200px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.hero-buttons a {
+  width: 100%;
+  text-align: center;
 }
+      .nav-links { gap: 1rem; }
+      section { padding: 3rem 1.2rem; }
+    }
   </style>
 </head>
 <body>
