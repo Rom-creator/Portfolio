@@ -357,14 +357,33 @@
     footer span { color: #c9a84c; }
 
     /* RESPONSIVE */
-    @media (max-width: 650px) {
-      .hero h1 { font-size: 34px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      nav { padding: 1rem 1.2rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 3rem 1.2rem; }
-    }
+   @media (max-width: 480px) {
+  .section-title {
+    font-size: 22px;
+  }
+
+  .project-info h3 {
+    font-size: 14px;
+  }
+
+  .project-info p {
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
   </style>
 </head>
 <body>
