@@ -359,6 +359,17 @@
     /* RESPONSIVE */
     @media (max-width: 650px) {
       .hero h1 { font-size: 34px; }
+      .hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.hero-buttons a {
+  width: 100%;
+  text-align: center;
+}
       .about-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       nav {
@@ -374,17 +385,7 @@
   justify-content: center;
   gap: 0.8rem;
 }
-.hero-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  align-items: center;
-}
 
-.hero-buttons a {
-  width: 100%;
-  text-align: center;
-}
       .nav-links { gap: 1rem; }
       section { padding: 3rem 1.2rem; }
     }
