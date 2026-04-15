@@ -361,12 +361,20 @@
       .hero h1 { font-size: 34px; }
 
 
-  .btn-gold,
-  .btn-outline {
+  .hero-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    margin-top: 1rem;
+  }
+
+  .btn-outline {
+    margin-left: 0; /* 🔥 enlève l’espace horizontal */
+  }
+
+  .btn-gold,
+  .btn-outline {
     width: 100%;
     max-width: 280px;
     text-align: center;
@@ -411,7 +419,7 @@
     <p class="hero-tag">Conceptrice de solutions numériques</p>
     <h1><span id="nom-typing"></span><span class="cursor" id="cursor"></span></h1>
     <p>Passionnée de design, de front-end et de motion design. Je transforme les idées en expériences visuelles mémorables.</p>
-    <div>
+    <div class="hero-buttons">
       <button class="btn-gold" onclick="document.getElementById('projets').scrollIntoView({behavior:'smooth'})">Voir mes projets</button>
       <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Me contacter</button>
     </div>
